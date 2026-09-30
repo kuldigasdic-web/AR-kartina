@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- A-Frame un MindAR bibliotēkas -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-aframe.prod.js"></script>
+    <style>
+      body { margin: 0; overflow: hidden; }
+    </style>
+  </head>
+  <body>
+    <!-- mindar-image norāda uz tavu .mind failu -->
+    <a-scene mindar-image="imageTargetSrc: ./targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-assets>
+        <!-- Mūsdienu attēla resurss -->
+        <img id="musdienasImg" src="./musdienas.jpg">
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <!-- Target index 0 piesaista objektu pirmajam attēlam no .mind faila -->
+      <a-entity mindar-image-target="targetIndex: 0">
+        <!-- height un width var pielāgot atbilstoši tavas bildes proporcijām (piem., 1 un 0.75, ja 4:3) -->
+        <a-plane src="#musdienasImg" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-plane>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
